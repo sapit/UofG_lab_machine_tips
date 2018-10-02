@@ -11,7 +11,7 @@ When the desktop crashes, you get the aforemention error and you cannot log in, 
 ## Disc quota exceeded
 One of the most common problems with the lab machines even with non-demanding use is running into the problem of exceeding the disc quota. The available space is usually 1.5GB on the network storage, which is really easy to fill up. 
 
-#### Check how much space you have left:
+#### Check how much space you have left
 ```
 quota
 ```
@@ -32,9 +32,11 @@ Often the cache(especially web browser) is the main culprit for taking up a lot 
 rm -rf ~/.cache/*
 ```
 
-#### Advanced:
+#### Advanced cache hack
 How to never have problems with `.cache`: place `.profile` in the home directory. During trials it did not cause any issues, but is relatively shady.
 
+#### Need more space?
+Each machine has a local disk mounted on /scratch, which is available, but won't be shared with the other machines. 
 
 ## Python development environment set up
 
@@ -68,7 +70,7 @@ To stop your virtual environment
 deactivate
 ```
 
-#### Note: 
+#### Note
 You will have to add this folder to your path every time you log in on the machine, so python can see it
 ```
 PATH=$PATH:~/.local/bin
@@ -76,7 +78,8 @@ PATH=$PATH:~/.local/bin
 #### Note 2
 It might be easiest to just open up the .bashrc file in you home directory and write that line there, as it will execute it on startup
 
-Similar example with conda in `setup_project.sh`
+#### Automatic project set up example
+The file `setup_project.sh` is an example of how to script your project setup, if it doesn't fit within the quota. In the user directory, at `~/$project_name`, are located the source files, which are automatically copied over to `/scratch` when the script is invoked. Only then, the packages are installed and you project is set up in `/scratch/$project_name`.
 
 ## Remote access
 
